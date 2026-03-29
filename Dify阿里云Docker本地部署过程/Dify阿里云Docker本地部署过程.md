@@ -6,6 +6,7 @@
 
 > https://ecs-buy.aliyun.com/ecs#/custom/prepay/cn-hongkong
 
+![阿里云ECS租赁步骤](image1.png)
 
 # 步骤 2: 安装 Docker 环境
 
