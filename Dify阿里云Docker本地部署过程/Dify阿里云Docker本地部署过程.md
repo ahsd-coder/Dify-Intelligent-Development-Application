@@ -6,7 +6,7 @@
 
 > https://ecs-buy.aliyun.com/ecs#/custom/prepay/cn-hongkong
 
-![阿里云ECS租赁步骤](./image(1).png)
+![阿里云ECS租赁步骤](./image (1).png)
 
 # 步骤 2: 安装 Docker 环境
 
@@ -41,4 +41,5 @@ sudo docker -v
 
 启动完成后，需要确定实例的安全组，打开 80 端口
 ![阿里云ECS租赁步骤](./image.png)
+
 访问：http://公网ip/install
