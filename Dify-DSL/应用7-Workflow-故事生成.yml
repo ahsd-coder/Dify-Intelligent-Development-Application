@@ -1,0 +1,261 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 应用7-Workflow-故事生成
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.0.26@4f1c4ded3d189719b7dd54e9d4e5b26f724f3632f3dfaa299491b42accc112c8
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: document-extractor
+      id: 1749993098200-source-1749993256627-target
+      source: '1749993098200'
+      sourceHandle: source
+      target: '1749993256627'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1749993256627-source-1749993263357-target
+      source: '1749993256627'
+      sourceHandle: source
+      target: '1749993263357'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1749993263357-source-1749993301073-target
+      source: '1749993263357'
+      sourceHandle: source
+      target: '1749993301073'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1749993301073-source-1749993343757-target
+      source: '1749993301073'
+      sourceHandle: source
+      target: '1749993343757'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          label: topic
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: topic
+      height: 89
+      id: '1749993098200'
+      position:
+        x: 55
+        y: 267
+      positionAbsolute:
+        x: 55
+        y: 267
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - '1749993098200'
+        - topic
+      height: 91
+      id: '1749993256627'
+      position:
+        x: 75
+        y: 382
+      positionAbsolute:
+        x: 75
+        y: 382
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5-7b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: c19e43a0-9017-496c-aa11-20f70346c3be
+          role: system
+          text: 生成精简的故事大纲
+        - id: 1982a4d5-7177-4cec-a117-b4475a00f316
+          role: user
+          text: 基于动画的主题{{#1749993256627.text#}}设想一个简短的故事情节。
+        selected: false
+        title: 大纲生成
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1749993263357'
+      position:
+        x: 75
+        y: 493
+      positionAbsolute:
+        x: 75
+        y: 493
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5-7b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: ff743d71-dae1-416e-8d72-d37ad953d8ae
+          role: system
+          text: 基于大纲续写故事，写为更加详细。
+        - id: 27d895ef-4420-4525-b610-f992ba2f1dcf
+          role: user
+          text: '原始的主题：{{#1749993263357.text#}}
+
+
+            设想的大纲：{{#1749993256627.text#}}'
+        selected: true
+        title: 故事生成
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1749993301073'
+      position:
+        x: 75
+        y: 597
+      positionAbsolute:
+        x: 75
+        y: 597
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1749993301073'
+          - text
+          variable: 故事
+        selected: false
+        title: 结束
+        type: end
+      height: 89
+      id: '1749993343757'
+      position:
+        x: 417
+        y: 416
+      positionAbsolute:
+        x: 417
+        y: 416
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 44
+      y: -189.66666666666663
+      zoom: 1

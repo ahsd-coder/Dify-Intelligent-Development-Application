@@ -1,0 +1,446 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 带登陆状态的Form表单聊天
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.0.26@4f1c4ded3d189719b7dd54e9d4e5b26f724f3632f3dfaa299491b42accc112c8
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables:
+  - description: ''
+    id: db80e372-91ed-4718-b55c-1808a968865e
+    name: user_token
+    selector:
+    - conversation
+    - user_token
+    value: ''
+    value_type: string
+  environment_variables:
+  - description: ''
+    id: c086ca90-39e9-44e8-b249-93124d45499a
+    name: login
+    selector:
+    - env
+    - login
+    value: 0
+    value_type: number
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: answer
+      id: 1730163641212-source-1731378296917-target
+      source: '1730163641212'
+      sourceHandle: source
+      target: '1731378296917'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1731378486318-source-1731378500668-target
+      source: '1731378486318'
+      sourceHandle: source
+      target: '1731378500668'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: 1729841263487-source-1731378918101-target
+      source: '1729841263487'
+      sourceHandle: source
+      target: '1731378918101'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: if-else
+      id: 1731378644337-source-1731379291700-target
+      source: '1731378644337'
+      sourceHandle: source
+      target: '1731379291700'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1731379291700-true-1731379076735-target
+      source: '1731379291700'
+      sourceHandle: 'true'
+      target: '1731379076735'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: answer
+      id: 1731379076735-source-1731379313752-target
+      source: '1731379076735'
+      sourceHandle: source
+      target: '1731379313752'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: template-transform
+      id: 1731379291700-false-1730163641212-target
+      source: '1731379291700'
+      sourceHandle: 'false'
+      target: '1730163641212'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: code
+      id: 1731378918101-true-1731378644337-target
+      source: '1731378918101'
+      sourceHandle: 'true'
+      target: '1731378644337'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1731378918101-false-1731378486318-target
+      source: '1731378918101'
+      sourceHandle: 'false'
+      target: '1731378486318'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 53
+      id: '1729841263487'
+      position:
+        x: 31.51781925297405
+        y: 263
+      positionAbsolute:
+        x: 31.51781925297405
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: true
+        template: "<form data-format=\"json\">\n  <label for=\"username\">Username:</label>\n\
+          \  <input type=\"text\" name=\"username\" />\n  <label for=\"password\"\
+          >Password:</label>\n  <input type=\"password\" name=\"password\" />\n  <button\
+          \ data-size=\"small\" data-variant=\"primary\">Login</button>\n</form>"
+        title: 登录表单
+        type: template-transform
+        variables: []
+      height: 53
+      id: '1730163641212'
+      position:
+        x: 1302.918221986527
+        y: 396.67814075135817
+      positionAbsolute:
+        x: 1302.918221986527
+        y: 396.67814075135817
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '初次使用，请登录员工账号和密码哦。
+
+
+          {{#1730163641212.output#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 120
+      id: '1731378296917'
+      position:
+        x: 1597.4318516554392
+        y: 384.63725174462166
+      positionAbsolute:
+        x: 1597.4318516554392
+        y: 384.63725174462166
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5-72b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 216843e4-021e-4655-8d6f-b527e193a06b
+          role: system
+          text: 你是个聊天机器人
+        - id: 24441532-9fcf-40b6-9204-2b02e478609a
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1731378486318'
+      position:
+        x: 638
+        y: 528.9130004149681
+      positionAbsolute:
+        x: 638
+        y: 528.9130004149681
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1731378486318.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 104
+      id: '1731378500668'
+      position:
+        x: 967.9924844907644
+        y: 528.9130004149681
+      positionAbsolute:
+        x: 967.9924844907644
+        y: 528.9130004149681
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json,requests\n\ndef main(input_string):\n    try:\n       \
+          \ data = json.loads(input_string)\n        username = data['username']\n\
+          \        password = data['password']\n        #这里可以验证是否登录成功，返回user_token和status，假设username=svcvit为登录成功\n\
+          \        #response_data = requests.post(\"\")\n        if username == \"\
+          svcvit\":\n            return {\"is_login\":1,\"user_token\":\"user_token_test\"\
+          }\n        else:\n            return {\"is_login\":0,\"user_token\":\"\"\
+          }\n    except:\n        return {\"is_login\":0,\"user_token\":\"\"}\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          is_login:
+            children: null
+            type: number
+          user_token:
+            children: null
+            type: string
+        selected: false
+        title: 登录
+        type: code
+        variables:
+        - value_selector:
+          - sys
+          - query
+          variable: input_string
+      height: 53
+      id: '1731378644337'
+      position:
+        x: 687.5399339512363
+        y: 291.0150622521621
+      positionAbsolute:
+        x: 687.5399339512363
+        y: 291.0150622521621
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: 704b4808-8dff-4ce5-bf44-1aa3ec2c7240
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - user_token
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: user_token
+        type: if-else
+      height: 125
+      id: '1731378918101'
+      position:
+        x: 333.37843662094906
+        y: 263
+      positionAbsolute:
+        x: 333.37843662094906
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - user_token
+        desc: ''
+        input_variable_selector:
+        - '1731378644337'
+        - user_token
+        selected: false
+        title: 变量赋值
+        type: assigner
+        write_mode: over-write
+      height: 87
+      id: '1731379076735'
+      position:
+        x: 1302.918221986527
+        y: 247.79937518831758
+      positionAbsolute:
+        x: 1302.918221986527
+        y: 247.79937518831758
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: d53711d6-bf99-4a90-ba67-96de51cf3a62
+            value: '1'
+            varType: number
+            variable_selector:
+            - '1731378644337'
+            - is_login
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 是否登录成功
+        type: if-else
+      height: 125
+      id: '1731379291700'
+      position:
+        x: 1002.0803454302229
+        y: 263
+      positionAbsolute:
+        x: 1002.0803454302229
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 登录成功，我们聊点什么？
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 101
+      id: '1731379313752'
+      position:
+        x: 1597.4318516554392
+        y: 219.34026419505415
+      positionAbsolute:
+        x: 1597.4318516554392
+        y: 219.34026419505415
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -626.9261588938263
+      y: -75.31894758025129
+      zoom: 0.9645937686099273
