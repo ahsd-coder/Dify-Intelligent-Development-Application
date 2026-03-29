@@ -40,5 +40,5 @@ sudo docker -v
 参考步骤：https://docs.dify.ai/zh-hans/getting-started/install-self-hosted/docker-compose
 
 启动完成后，需要确定实例的安全组，打开 80 端口
-
+![阿里云ECS租赁步骤](./image.png)
 访问：http://公网ip/install
